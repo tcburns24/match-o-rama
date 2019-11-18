@@ -8,7 +8,7 @@ export default {
     return {
       boardSize: "--Board Size--",
       boardTheme: "--Board Theme--",
-      timeLimit: null,
+      timeLimit: "--Time Limit--",
       gameInSession: false
     };
   },
@@ -33,9 +33,11 @@ export default {
         : (this.gameInSession = true);
     },
     cancelGame() {
+      console.log("🏈🏈 cancelGame() called");
       this.gameInSession = false;
-      document.getElementsByClassName("board-size-value")[0].selectedIndex = 0;
-      document.getElementsByClassName("board-theme-value")[0].selectedIndex = 0;
+      this.boardSize = "--Board Size--";
+      this.boardTheme = "--Board Theme--";
+      this.timeLimit = "--Time Limit--";
     }
   },
   computed: {
@@ -163,9 +165,22 @@ body {
                   <option value="2">US States</option>
                 </select>
               </div>
-              <div class="selection timer">
-                <input type="text" placeholder="⏱Enter Time Limit" v-model="timeLimit">
+              <div class="selection board-images">
+                <select class="board-theme-value" v-model="timeLimit">
+                  <option>--Time Limit--</option>
+                  <option value="1">1:00</option>
+                  <option value="2">2:00</option>
+                  <option value="3">3:00</option>
+                  <option value="4">4:00</option>
+                  <option value="5">5:00</option>
+                  <option value="6">6:00</option>
+                  <option value="7">7:00</option>
+                  <option value="8">8:00</option>
+                </select>
               </div>
+              <!-- <div class="selection timer">
+                <input type="text" placeholder="⏱Enter Time Limit" v-model="timeLimit">
+              </div>-->
               <div class="selection start-btn">
                 <input
                   type="button"

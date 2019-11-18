@@ -35,7 +35,12 @@ export default {
     };
   },
   methods: {
-    resetBoard() {}
+    resetBoard() {
+      console.log("~@#* resetBoard() called!");
+      this.$parent.$parent.cancelGame();
+      this.$parent.gameHasEnded = false;
+      this.$parent.cards = [];
+    }
   }
 };
 </script>
@@ -47,8 +52,8 @@ export default {
   position: absolute;
   display: block;
   background-color: #ebebeb;
-  width: 60%;
-  left: 20%;
+  width: 46%;
+  left: 27%;
   border-style: solid;
   border-width: 4px;
   border-radius: 12px;
@@ -77,7 +82,7 @@ export default {
     <span class="row title">{{ this.won ? this.winTitle : this.lossTitle }}</span>
     <div class="row text">{{ this.won ? this.winText : this.lossText }}</div>
     <div class="row button">
-      <input type="button" value="Again Again!">
+      <input type="button" value="Again Again!" @click="this.resetBoard">
     </div>
   </div>
 </template>

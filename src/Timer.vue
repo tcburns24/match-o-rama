@@ -6,8 +6,8 @@ export default {
   },
   data: function() {
     return {
-      active: true,
-      timeRemaining: this.time * 5 // originally * 60
+      active: false,
+      timeRemaining: this.time * 5, // originally * 60
     };
   },
   watch: {
@@ -22,6 +22,7 @@ export default {
 
     start() {
       if (this.timeRemaining > 0) {
+        this.active = true;
         setTimeout(() => {
           this.timeRemaining -= 1;
           this.start();

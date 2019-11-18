@@ -120,6 +120,14 @@ export default {
         }
         this.cards.push(rowArr);
       }
+    },
+
+    cancelGame() {
+      this.boardArr = [];
+      this.cards = [];
+      this.selectedCards = [];
+      this.gameHasEnded = false;
+      this.didWin = false;
     }
   }
 };
