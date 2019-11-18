@@ -7,12 +7,12 @@ export default {
   data: function() {
     return {
       active: false,
-      timeRemaining: this.time * 5, // originally * 60
+      timeRemaining: this.time * 3 // originally * 60
     };
   },
   watch: {
     time() {
-      this.timeRemaining = this.time * 5; // originally * 60
+      this.timeRemaining = this.time > 0 ? this.time * 3 : 0; // originally * 60
     }
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
 
 <template>
   <div v-show="this.active" class="container">
-    <div class="number">{{ parseInt(timeRemaining / 60) }}:{{ this.pad(timeRemaining % 60) }}</div>
+    <div class="number">{{ parseInt(timeRemaining / 60, 0) }}:{{ this.pad(timeRemaining % 60) }}</div>
   </div>
 </template>
 
