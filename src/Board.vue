@@ -21,16 +21,17 @@ export default {
       cards: [],
       selectedCards: [],
       pairsToWin:
-        this.boardSize % 2 === 0
-          ? this.boardSize ** 2 / 2
-          : (this.boardSize ** 2 - 1) / 2,
+        this.size % 2 === 0 ? this.size ** 2 / 2 : (this.size ** 2 - 1) / 2,
       didWin: false,
       gameHasEnded: false
     };
   },
+
   watch: {
     size() {
       this.boardSize = this.size;
+      this.pairsToWin =
+      this.size % 2 === 0 ? this.size ** 2 / 2 : (this.size ** 2 - 1) / 2;
     },
     theme() {
       this.boardTheme = this.theme;
@@ -66,6 +67,12 @@ export default {
       card1.$el.style.backgroundColor = "#91e99b";
       card2.$el.style.backgroundColor = "#91e99b";
       this.pairsToWin -= 1;
+      if (this.pairsToWin === 0) {
+        this.didWin = true;
+        this.gameHasEnded = true;
+        this.$children[0].active = false;
+        this.$children[0].start();
+      }
       this.selectedCards = [];
     },
 
@@ -105,6 +112,7 @@ export default {
         let studPoint = this.boardArr.length / 2;
         this.boardArr.splice(studPoint, 0, "•");
       }
+      this.$children[0].active = true;
       this.$children[0].start();
     },
 

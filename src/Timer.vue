@@ -7,12 +7,12 @@ export default {
   data: function() {
     return {
       active: false,
-      timeRemaining: this.time * 3 // originally * 60
+      timeRemaining: this.time * 6
     };
   },
   watch: {
     time() {
-      this.timeRemaining = this.time > 0 ? this.time * 3 : 0; // originally * 60
+      this.timeRemaining = this.time > 0 ? this.time * 6 : 0;
     }
   },
   methods: {
@@ -22,17 +22,13 @@ export default {
 
     start() {
       if (this.timeRemaining > 0) {
-        this.active = true;
         setTimeout(() => {
           this.timeRemaining -= 1;
           this.start();
-        }, 1000);
+        }, this.active ? 1000 : 999999);
       } else {
         this.$parent.gameHasEnded = true;
       }
-    },
-    previewStart() {
-      // 3...2...1...GO!
     }
   }
 };
@@ -44,17 +40,17 @@ export default {
   vertical-align: center;
   text-align: center;
   width: 50%;
-  padding: 3% 0;
+  padding: 1% 0;
 }
 .number {
-  size: 20px;
-  font-family: "Times New Roman", Times, serif;
+  font-size: 24px;
+  font-family: avenir;
 }
 </style>
 
 <template>
-  <div v-show="this.active" class="container">
-    <div class="number">{{ parseInt(timeRemaining / 60, 0) }}:{{ this.pad(timeRemaining % 60) }}</div>
+  <div class="container">
+    <div class="number">{{ parseInt(timeRemaining / 60) }}:{{ this.pad(timeRemaining % 60) }}</div>
   </div>
 </template>
 

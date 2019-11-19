@@ -39,6 +39,7 @@ export default {
       console.log("~@#* resetBoard() called!");
       this.$parent.$parent.cancelGame();
       this.$parent.gameHasEnded = false;
+      this.$parent.didWin = false;
       this.$parent.cards = [];
     }
   }
