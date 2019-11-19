@@ -64,6 +64,7 @@ body {
   overflow: hidden;
   width: 100%;
   font-family: Avenir;
+  max-width: 1100px;
 }
 
 .banner-wrap {
@@ -178,9 +179,6 @@ body {
                   <option value="8">8:00</option>
                 </select>
               </div>
-              <!-- <div class="selection timer">
-                <input type="text" placeholder="⏱Enter Time Limit" v-model="timeLimit">
-              </div>-->
               <div class="selection start-btn">
                 <input
                   type="button"
